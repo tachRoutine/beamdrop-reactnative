@@ -16,6 +16,7 @@ import {
 import BeamIcon from "@/components/scanner/BeamIcon";
 import ScanIcon from "@/components/scanner/ScanIcon";
 import { StatusBar } from "expo-status-bar";
+import { NeedPermissions } from "@/components/scanner/NeedPermissions";
 
 export default function Scanner() {
   const [facing, setFacing] = useState<CameraType>("back");
@@ -79,39 +80,7 @@ export default function Scanner() {
 
   if (!permission.granted) {
     return (
-      <View style={styles.permissionContainer}>
-        <StatusBar style="dark" />
-        <View style={styles.permissionContent}>
-          <View style={styles.headerContainer}>
-            <BeamIcon />
-            <Text style={styles.appTitle}>BeamDrop</Text>
-          </View>
-
-          <View style={styles.permissionCard}>
-            <View style={styles.cameraIconContainer}>
-              <ScanIcon />
-            </View>
-
-            <Text style={styles.permissionTitle}>
-              Camera Permission Required
-            </Text>
-            <Text style={styles.permissionMessage}>
-              BeamDrop needs access to your camera to scan QR codes and help you
-              share files seamlessly.
-            </Text>
-
-            <TouchableOpacity
-              style={styles.permissionButton}
-              onPress={requestPermission}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.permissionButtonText}>
-                Grant Camera Access
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
+      <NeedPermissions requestPermission={requestPermission} />
     );
   }
 

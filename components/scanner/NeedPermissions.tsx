@@ -4,7 +4,10 @@ import { AppColors } from "@/constants/Colors"
 import { StatusBar } from "expo-status-bar"
 import { TouchableOpacity, View, StyleSheet, Text } from "react-native"
 
-export const NeedPermissions = () => {
+interface NeedPermissionsProps {
+    requestPermission: () => void;
+}
+export const NeedPermissions = ({ requestPermission }: NeedPermissionsProps) => {
     return (
         <View style={styles.permissionContainer}>
         <StatusBar style="dark" />
