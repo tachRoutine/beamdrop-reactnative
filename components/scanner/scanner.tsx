@@ -1,5 +1,7 @@
 import Overlay from "@/components/scanner/overlay";
+import { BEAMDROP_PORT } from "@/constants/beamdrop";
 import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
+import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import {
   AppState,
@@ -7,7 +9,6 @@ import {
   Linking,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 
@@ -17,6 +18,7 @@ export default function Scanner() {
   const [scannedData, setScannedData] = useState("");
   const qrLock = useRef(false);
   const appState = useRef(AppState.currentState);
+  const router = useRouter();
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextAppState) => {
@@ -43,7 +45,7 @@ export default function Scanner() {
     if (qrLock.current) return;
     
     console.log("scanned data:", data);
-    if (data && data !== "exp://192.168.1.3:8081") { // Filter out development server URL
+    if (data && data !== "exp://192.168.1.3:8081" && data.includes(BEAMDROP_PORT.toString())) {
       setScannedData(data);
     }
   };
@@ -52,11 +54,13 @@ export default function Scanner() {
     if (scannedData && !qrLock.current) {
       qrLock.current = true;
       try {
-        await Linking.openURL(scannedData);
+        router.push(`/webview/${encodeURIComponent(scannedData)}`);
       } catch (error) {
+        alert("Failed to open URL");
         console.error("Failed to open URL:", error);
       }
-      // Reset after 2 seconds
+      // NOTE: Resets after 2 seconds
+      // This is to prevent multiple scans of the same QR code
       setTimeout(() => {
         qrLock.current = false;
         setScannedData("");
