@@ -1,1 +1,1 @@
-export const BEAMDROP_PORT = 8080;
+export const BEAMDROP_PORT = 55555;
