@@ -39,10 +39,7 @@ export default function Overlay({ onScan, scannedData }: OverlayProps) {
       />
       {scannedData ? (
         <View style={styles.scannedDataContainer}>
-          <Text style={styles.scannedDataText}>QR Code Detected!</Text>
-          <Text style={styles.urlText} numberOfLines={2}>
-            {scannedData}
-          </Text>
+          <Text style={styles.scannedDataText}>Beam Detected!</Text>
         </View>
       ) : null}
       <TouchableOpacity
