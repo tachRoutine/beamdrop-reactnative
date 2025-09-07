@@ -1,9 +1,9 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import { Image } from 'react-native'
 
-const iconPath = require("../assets/images/icon.png")
+const iconPath = require("../../assets/images/beam.png")
 
-const ScanIcon = () => {
+const BeamIcon = () => {
   return (
     <View style={{
       backgroundColor: 'rgba(255, 255, 255, 0.2)',
@@ -14,7 +14,6 @@ const ScanIcon = () => {
         style={{
           width: 32,
           height: 32,
-          tintColor: 'white',
         }}
         source={iconPath}
       />
@@ -22,4 +21,4 @@ const ScanIcon = () => {
   )
 }
 
-export default ScanIcon
+export default BeamIcon

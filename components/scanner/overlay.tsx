@@ -1,7 +1,8 @@
-import ScanIcon from "@/components/ScanIcon";
+import ScanIcon from "@/components/scanner/ScanIcon";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
+import BeamIcon from "@/components/scanner/BeamIcon";
 
 interface OverlayProps {
   onScan: () => void;
@@ -13,6 +14,9 @@ export default function Overlay({ onScan, scannedData }: OverlayProps) {
 
   return (
     <View style={styles.container}>
+      <View>
+        <BeamIcon />
+      </View>
       <Text style={styles.text}>Scan a QR code</Text>
       <View style={styles.box} />
       {scannedData ? (
