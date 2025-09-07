@@ -1,5 +1,6 @@
 import Overlay from "@/components/scanner/overlay";
 import { BEAMDROP_PORT } from "@/constants/beamdrop";
+import { AppColors } from "@/constants/Colors";
 import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
@@ -102,10 +103,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
+    backgroundColor: AppColors.background,
   },
   message: {
     textAlign: "center",
     paddingBottom: 10,
+    color: AppColors.foreground,
+    fontSize: 16,
   },
   camera: {
     flex: 1,
@@ -125,6 +129,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "white",
+    color: AppColors.foreground,
   },
 });

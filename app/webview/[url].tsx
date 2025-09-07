@@ -4,6 +4,7 @@ import { useGlobalSearchParams } from "expo-router";
 import { WebView } from "react-native-webview";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import { AppColors } from "@/constants/Colors";
 
 export default function Webview() {
   const { url } = useGlobalSearchParams();
@@ -18,5 +19,6 @@ export default function Webview() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: AppColors.background,
   },
 });

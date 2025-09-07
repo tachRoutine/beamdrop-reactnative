@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import { Image } from 'react-native'
+import { AppColors } from '@/constants/Colors'
 
 const iconPath = require("../../assets/images/icon.png")
 
@@ -14,7 +15,7 @@ const ScanIcon = () => {
         style={{
           width: 32,
           height: 32,
-          tintColor: 'white',
+          tintColor: AppColors.white,
         }}
         source={iconPath}
       />

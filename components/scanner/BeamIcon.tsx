@@ -1,12 +1,13 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import { Image } from 'react-native'
+import { AppColors } from '@/constants/Colors'
 
 const iconPath = require("../../assets/images/beam.png")
 
 const BeamIcon = () => {
   return (
     <View style={{
-      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+      backgroundColor: AppColors.primary,
       borderRadius: 20,
       padding: 8,
     }}>

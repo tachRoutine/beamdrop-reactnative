@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import BeamIcon from "@/components/scanner/BeamIcon";
+import { AppColors } from "@/constants/Colors";
 
 interface OverlayProps {
   onScan: () => void;
@@ -25,7 +26,7 @@ export default function Overlay({ onScan, scannedData }: OverlayProps) {
         }}
       >
         <BeamIcon />
-        <Text style={{ color: "white", fontSize: 24, fontWeight: "bold" }}>
+        <Text style={{ color: AppColors.white, fontSize: 24, fontWeight: "bold" }}>
           BeamDrop
         </Text>
       </View>
@@ -33,7 +34,7 @@ export default function Overlay({ onScan, scannedData }: OverlayProps) {
       <View
         style={{
           ...styles.box,
-          borderColor: scannedData ? "rgba(34, 197, 94, 0.8)" : "white",
+          borderColor: scannedData ? AppColors.success : AppColors.white,
         }}
       />
       {scannedData ? (
@@ -55,8 +56,8 @@ export default function Overlay({ onScan, scannedData }: OverlayProps) {
         <LinearGradient
           colors={
             scannedData
-              ? ["rgba(34, 197, 94, 0.8)", "rgba(21, 128, 61, 0.8)"]
-              : ["rgba(156, 163, 175, 0.6)", "rgba(107, 114, 128, 0.6)"]
+              ? [AppColors.success, AppColors.successLight]
+              : [AppColors.mutedForeground, AppColors.foreground]
           }
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
@@ -83,10 +84,10 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: AppColors.overlay,
   },
   text: {
-    color: "white",
+    color: AppColors.white,
     fontSize: 24,
     fontWeight: "bold",
   },
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   scanButtonText: {
-    color: "white",
+    color: AppColors.white,
     fontSize: 24,
     fontWeight: "700",
     letterSpacing: 1,
@@ -143,20 +144,22 @@ const styles = StyleSheet.create({
   scannedDataContainer: {
     position: "absolute",
     top: 120,
-    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    backgroundColor: AppColors.overlayCard,
     borderRadius: 10,
     padding: 16,
     maxWidth: "80%",
+    borderWidth: 2,
+    borderColor: AppColors.border,
   },
   scannedDataText: {
-    color: "#10b981",
+    color: AppColors.success,
     fontSize: 16,
     fontWeight: "600",
     textAlign: "center",
     marginBottom: 8,
   },
   urlText: {
-    color: "white",
+    color: AppColors.white,
     fontSize: 14,
     textAlign: "center",
     fontFamily: "monospace",
