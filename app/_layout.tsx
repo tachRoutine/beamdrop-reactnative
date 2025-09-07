@@ -29,7 +29,7 @@ export default function RootLayout() {
   return (
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="webview" options={{ headerShown: false }} />
+        <Stack.Screen name="webview/[url]" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
         <StatusBar style="auto" />
       </Stack>
