@@ -14,15 +14,34 @@ export default function Overlay({ onScan, scannedData }: OverlayProps) {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View
+        style={{
+          position: "absolute",
+          top: 50,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 8,
+        }}
+      >
         <BeamIcon />
+        <Text style={{ color: "white", fontSize: 24, fontWeight: "bold" }}>
+          BeamDrop
+        </Text>
       </View>
       <Text style={styles.text}>Scan a QR code</Text>
-      <View style={styles.box} />
+      <View
+        style={{
+          ...styles.box,
+          borderColor: scannedData ? "rgba(34, 197, 94, 0.8)" : "white",
+        }}
+      />
       {scannedData ? (
         <View style={styles.scannedDataContainer}>
           <Text style={styles.scannedDataText}>QR Code Detected!</Text>
-          <Text style={styles.urlText} numberOfLines={2}>{scannedData}</Text>
+          <Text style={styles.urlText} numberOfLines={2}>
+            {scannedData}
+          </Text>
         </View>
       ) : null}
       <TouchableOpacity
@@ -34,9 +53,11 @@ export default function Overlay({ onScan, scannedData }: OverlayProps) {
         disabled={!scannedData}
       >
         <LinearGradient
-          colors={scannedData 
-            ? ["rgba(34, 197, 94, 0.8)", "rgba(21, 128, 61, 0.8)"] 
-            : ["rgba(156, 163, 175, 0.6)", "rgba(107, 114, 128, 0.6)"]}
+          colors={
+            scannedData
+              ? ["rgba(34, 197, 94, 0.8)", "rgba(21, 128, 61, 0.8)"]
+              : ["rgba(156, 163, 175, 0.6)", "rgba(107, 114, 128, 0.6)"]
+          }
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.gradientButton}
@@ -74,7 +95,6 @@ const styles = StyleSheet.create({
     height: 300,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: "white",
     marginTop: 20,
     justifyContent: "center",
     alignItems: "center",
