@@ -1,0 +1,163 @@
+import BeamIcon from "@/components/scanner/BeamIcon"
+import ScanIcon from "@/components/scanner/ScanIcon"
+import { AppColors } from "@/constants/Colors"
+import { StatusBar } from "expo-status-bar"
+import { TouchableOpacity, View, StyleSheet, Text } from "react-native"
+
+export const NeedPermissions = () => {
+    return (
+        <View style={styles.permissionContainer}>
+        <StatusBar style="dark" />
+        <View style={styles.permissionContent}>
+          <View style={styles.headerContainer}>
+            <BeamIcon />
+            <Text style={styles.appTitle}>BeamDrop</Text>
+          </View>
+
+          <View style={styles.permissionCard}>
+            <View style={styles.cameraIconContainer}>
+              <ScanIcon />
+            </View>
+
+            <Text style={styles.permissionTitle}>
+              Camera Permission Required
+            </Text>
+            <Text style={styles.permissionMessage}>
+              BeamDrop needs access to your camera to scan QR codes and help you
+              share files seamlessly.
+            </Text>
+
+            <TouchableOpacity
+              style={styles.permissionButton}
+              onPress={requestPermission}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.permissionButtonText}>
+                Grant Camera Access
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: AppColors.background,
+  },
+  permissionContainer: {
+    flex: 1,
+    backgroundColor: AppColors.background,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  permissionContent: {
+    width: "100%",
+    maxWidth: 400,
+    alignItems: "center",
+  },
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 12,
+    marginBottom: 40,
+  },
+  appTitle: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: AppColors.foreground,
+  },
+  permissionCard: {
+    backgroundColor: AppColors.card,
+    padding: 32,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 8,
+    borderWidth: 2,
+    borderColor: AppColors.border,
+  },
+  cameraIconContainer: {
+    width: 80,
+    height: 80,
+    backgroundColor: AppColors.foreground,
+    borderRadius: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 24,
+    borderWidth: 2,
+    borderColor: AppColors.border,
+  },
+  cameraIcon: {
+    fontSize: 40,
+  },
+  permissionTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: AppColors.foreground,
+    textAlign: "center",
+    marginBottom: 16,
+  },
+  permissionMessage: {
+    fontSize: 16,
+    color: AppColors.mutedForeground,
+    textAlign: "center",
+    lineHeight: 24,
+    marginBottom: 32,
+  },
+  permissionButton: {
+    backgroundColor: AppColors.primary,
+    paddingHorizontal: 32,
+    paddingVertical: 16,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  permissionButtonText: {
+    color: AppColors.primaryForeground,
+    fontSize: 18,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+  message: {
+    textAlign: "center",
+    paddingBottom: 10,
+    color: AppColors.foreground,
+    fontSize: 16,
+  },
+  camera: {
+    flex: 1,
+  },
+  buttonContainer: {
+    position: "absolute",
+    bottom: 64,
+    flexDirection: "row",
+    backgroundColor: "transparent",
+    width: "100%",
+    paddingHorizontal: 64,
+  },
+  button: {
+    flex: 1,
+    alignItems: "center",
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: AppColors.foreground,
+  },
+});
