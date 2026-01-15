@@ -51,13 +51,13 @@ export default function Scanner() {
     if (qrLock.current) return;
 
     console.log("scanned data:", data);
-    if (
-      data &&
-      data !== "exp://192.168.1.3:8081" &&
-      data.includes(BEAMDROP_PORT.toString())
-    ) {
-      setScannedData(data);
+    if (!data) return;
+
+    if (data.startsWith("exp:") || data.startsWith("exp+")) { // Reject exp:// and exp+:// URLs from expo while testing
+      return;
     }
+
+    setScannedData(data);
   };
 
   const openScannedData = async () => {
@@ -79,9 +79,7 @@ export default function Scanner() {
   };
 
   if (!permission.granted) {
-    return (
-      <NeedPermissions requestPermission={requestPermission} />
-    );
+    return <NeedPermissions requestPermission={requestPermission} />;
   }
 
   function toggleCameraFacing() {
