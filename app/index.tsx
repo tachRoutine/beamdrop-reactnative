@@ -1,4 +1,4 @@
-import { View, Text, StatusBar } from "react-native";
+import { View, StatusBar } from "react-native";
 import React from "react";
 import Scanner from "@/components/scanner/scanner";
 import { AppColors } from "@/constants/Colors";
