@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import BeamIcon from "@/components/scanner/BeamIcon";
 import { AppColors } from "@/constants/Colors";
+import { Link } from "expo-router";
 
 interface OverlayProps {
   onScan: () => void;
@@ -15,7 +16,8 @@ export default function Overlay({ onScan, scannedData }: OverlayProps) {
 
   return (
     <View style={styles.container}>
-      <View
+      <Link
+        href={"/settings"}
         style={{
           position: "absolute",
           top: 50,
@@ -29,7 +31,7 @@ export default function Overlay({ onScan, scannedData }: OverlayProps) {
         <Text style={{ color: AppColors.white, fontSize: 24, fontWeight: "bold" }}>
           BeamDrop
         </Text>
-      </View>
+      </Link>
       <Text style={styles.text}>Scan a QR code</Text>
       <View
         style={{
