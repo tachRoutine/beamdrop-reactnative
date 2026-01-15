@@ -1,10 +1,17 @@
 import ScanIcon from "@/components/scanner/ScanIcon";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import BeamIcon from "@/components/scanner/BeamIcon";
 import { AppColors } from "@/constants/Colors";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+import * as Haptics from 'expo-haptics';
 
 interface OverlayProps {
   onScan: () => void;
@@ -16,22 +23,16 @@ export default function Overlay({ onScan, scannedData }: OverlayProps) {
 
   return (
     <View style={styles.container}>
-      <Link
-        href={"/settings"}
-        style={{
-          position: "absolute",
-          top: 50,
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 8,
+      <Pressable
+        onPress={() => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+          router.push("/settings");
         }}
+        style={styles.headerLink}
       >
         <BeamIcon />
-        <Text style={{ color: AppColors.white, fontSize: 24, fontWeight: "bold" }}>
-          BeamDrop
-        </Text>
-      </Link>
+        <Text style={styles.headerText}>BeamDrop</Text>
+      </Pressable>
       <Text style={styles.text}>Scan a QR code</Text>
       <View
         style={{
@@ -162,5 +163,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: "center",
     fontFamily: "monospace",
+  },
+  headerLink: {
+    position: "absolute",
+    top: 50,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+  },
+  headerText: {
+    color: AppColors.white,
+    fontSize: 24,
+    fontWeight: "bold",
+    marginLeft: 8, // replaces 'gap' for proper spacing
   },
 });
