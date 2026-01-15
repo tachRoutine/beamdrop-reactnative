@@ -1,19 +1,23 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { AppColors } from '@/constants/Colors';
+import { useColorScheme } from "@/hooks/useColorScheme";
+import { AppColors } from "@/constants/Colors";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   useEffect(() => {
@@ -42,6 +46,10 @@ export default function RootLayout() {
     <ThemeProvider value={customTheme}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="settings"
+          options={{ headerShown: false, presentation: "formSheet" }}
+        />
         <Stack.Screen name="webview/[url]" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
         <StatusBar style="dark" backgroundColor={AppColors.background} />

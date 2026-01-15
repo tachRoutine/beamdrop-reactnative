@@ -17,6 +17,8 @@ import BeamIcon from "@/components/scanner/BeamIcon";
 import ScanIcon from "@/components/scanner/ScanIcon";
 import { StatusBar } from "expo-status-bar";
 import { NeedPermissions } from "@/components/scanner/NeedPermissions";
+import * as Haptics from "expo-haptics";
+import { HAS_REANIMATED_3 } from "@shopify/react-native-skia";
 
 export default function Scanner() {
   const [facing, setFacing] = useState<CameraType>("back");
@@ -53,9 +55,12 @@ export default function Scanner() {
     console.log("scanned data:", data);
     if (!data) return;
 
-    if (data.startsWith("exp:") || data.startsWith("exp+")) { // Reject exp:// and exp+:// URLs from expo while testing
+    if (data.startsWith("exp:") || data.startsWith("exp+")) {
+      // Reject exp:// and exp+:// URLs from expo while testing
       return;
     }
+
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
     setScannedData(data);
   };
@@ -65,10 +70,12 @@ export default function Scanner() {
       qrLock.current = true;
       try {
         router.push(`/webview/${encodeURIComponent(scannedData)}`);
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
       } catch (error) {
         alert("Failed to open URL");
         console.error("Failed to open URL:", error);
       }
+
       // NOTE: Resets after 2 seconds
       // This is to prevent multiple scans of the same QR code
       setTimeout(() => {

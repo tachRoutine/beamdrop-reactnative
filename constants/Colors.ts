@@ -1,17 +1,24 @@
 export const AppColors = {
-  background: '#f7f5f3',
-  card: '#ffffff',
-  primary: '#6b4423',
-  primaryForeground: '#f7f5f3',
-  foreground: '#9e8e8863',
-  mutedForeground: '#937d6b8b',
-  border: '#c7bfb5',
-  success: '#16a34a98',
-  successLight: 'rgba(22, 163, 74, 0.57)',
+  background: '#f7f5f3',          // keep
+  card: '#ffffff',                // keep
+
+  primary: '#6b4423',              // keep BeamDrop brown
+  primaryForeground: '#ffffff',    // clearer on buttons
+
+  foreground: '#2d231f',           // solid, readable main text
+  mutedForeground: '#6f625a',      // secondary text, still soft
+
+  border: '#d2cbc3',               // slightly clearer separators
+
+  success: '#16a34a',              // solid success color
+  successLight: '#e6f6ec',         // readable success background
+
   overlay: 'rgba(0, 0, 0, 0.5)',
   overlayCard: 'rgba(0, 0, 0, 0.7)',
+
   white: '#ffffff',
 };
+
 
 const tintColorLight = '#6b4423';
 const tintColorDark = '#6b4423';
