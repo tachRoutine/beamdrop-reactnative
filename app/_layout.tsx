@@ -52,8 +52,8 @@ export default function RootLayout() {
         />
         <Stack.Screen name="webview/[url]" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
-        <StatusBar style="dark" backgroundColor={AppColors.background} />
       </Stack>
+      <StatusBar style="dark" backgroundColor={AppColors.background} />
     </ThemeProvider>
   );
 }
