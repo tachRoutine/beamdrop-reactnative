@@ -50,6 +50,10 @@ export default function RootLayout() {
           name="settings"
           options={{ headerShown: false, presentation: "formSheet" }}
         />
+        <Stack.Screen
+          name="scanner"
+          options={{ headerShown: false, presentation: "fullScreenModal" }}
+        />
         <Stack.Screen name="webview/[url]" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
