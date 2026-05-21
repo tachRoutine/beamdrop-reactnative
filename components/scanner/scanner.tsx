@@ -3,11 +3,7 @@ import { AppColors } from "@/constants/Colors";
 import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
-import {
-  AppState,
-  StyleSheet,
-  View,
-} from "react-native";
+import { AppState, StyleSheet, View } from "react-native";
 import { NeedPermissions } from "@/components/scanner/NeedPermissions";
 import * as Haptics from "expo-haptics";
 import AsyncStorage from "@react-native-async-storage/async-storage";

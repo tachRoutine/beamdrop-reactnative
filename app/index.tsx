@@ -51,7 +51,7 @@ export default function Home() {
   useFocusEffect(
     useCallback(() => {
       loadRecent();
-    }, [loadRecent])
+    }, [loadRecent]),
   );
 
   const handleGo = async () => {
