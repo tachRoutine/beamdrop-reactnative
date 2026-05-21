@@ -1,19 +1,17 @@
 {
   "expo": {
-    "name": "beamdrop",
-    "slug": "beamdrop",
+    "name": "beamdrop mobile",
+    "slug": "beamdrop-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "beamdrop",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.tach.beamdrop"
     },
     "android": {
-      "edgeToEdgeEnabled": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#ffffff"
