@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
-    "@react-navigation/bottom-tabs": "^7.3.10",
-    "@react-navigation/native": "^7.1.6",
+    "@react-navigation/bottom-tabs": "^7.16.1",
+    "@react-navigation/native": "^7.2.4",
     "@shopify/react-native-skia": "2.4.18",
     "ekilirelay": "^1.0.3",
     "expo": "^55.0.0",
