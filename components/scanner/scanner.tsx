@@ -1,24 +1,15 @@
 import Overlay from "@/components/scanner/overlay";
-import { BEAMDROP_PORT } from "@/constants/beamdrop";
 import { AppColors } from "@/constants/Colors";
 import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import {
   AppState,
-  Button,
-  Linking,
   StyleSheet,
-  Text,
   View,
-  TouchableOpacity,
 } from "react-native";
-import BeamIcon from "@/components/scanner/BeamIcon";
-import ScanIcon from "@/components/scanner/ScanIcon";
-import { StatusBar } from "expo-status-bar";
 import { NeedPermissions } from "@/components/scanner/NeedPermissions";
 import * as Haptics from "expo-haptics";
-import { HAS_REANIMATED_3 } from "@shopify/react-native-skia";
 
 export default function Scanner() {
   const [facing, setFacing] = useState<CameraType>("back");
