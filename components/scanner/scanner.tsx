@@ -1,24 +1,15 @@
 import Overlay from "@/components/scanner/overlay";
-import { BEAMDROP_PORT } from "@/constants/beamdrop";
 import { AppColors } from "@/constants/Colors";
 import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
-import {
-  AppState,
-  Button,
-  Linking,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
-import BeamIcon from "@/components/scanner/BeamIcon";
-import ScanIcon from "@/components/scanner/ScanIcon";
-import { StatusBar } from "expo-status-bar";
+import { AppState, StyleSheet, View } from "react-native";
 import { NeedPermissions } from "@/components/scanner/NeedPermissions";
 import * as Haptics from "expo-haptics";
-import { HAS_REANIMATED_3 } from "@shopify/react-native-skia";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const RECENT_URLS_KEY = "beamdrop_recent_urls";
+const MAX_RECENT_URLS = 20;
 
 export default function Scanner() {
   const [facing, setFacing] = useState<CameraType>("back");
@@ -69,6 +60,13 @@ export default function Scanner() {
     if (scannedData && !qrLock.current) {
       qrLock.current = true;
       try {
+        // Save to recent URLs
+        const json = await AsyncStorage.getItem(RECENT_URLS_KEY);
+        const urls: string[] = json ? JSON.parse(json) : [];
+        const filtered = urls.filter((u) => u !== scannedData);
+        const updated = [scannedData, ...filtered].slice(0, MAX_RECENT_URLS);
+        await AsyncStorage.setItem(RECENT_URLS_KEY, JSON.stringify(updated));
+
         router.push(`/webview/${encodeURIComponent(scannedData)}`);
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
       } catch (error) {
